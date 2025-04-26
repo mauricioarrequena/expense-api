@@ -1,8 +1,13 @@
 import express from "express";
-import "reflect-metadata";
 import { AppDataSource } from "./data-source";
-import { Account } from "./models/Account";
 import cors from "cors";
+import { getAccounts } from "./controllers/AccountController";
+import { getTransactionTags } from "./controllers/TransactionTagController";
+import {
+  getTransactions,
+  postTransaction,
+} from "./controllers/TransactionController";
+import "reflect-metadata";
 
 const app = express();
 app.use(cors());
@@ -12,13 +17,17 @@ AppDataSource.initialize()
   .then(() => {
     console.log("Database connection established successfully!");
 
-    app.get("/accounts", async (req, res) => {
-      const accontRepo = AppDataSource.getRepository(Account);
-      const accounts = await accontRepo.find();
-      res.json(accounts); 
-    });
+    //acccount controller
+    app.get("/accounts", getAccounts);
 
-    const PORT = 5000;
+    //transactiontag controller
+    app.get("/transactionTags", getTransactionTags);
+
+    //transaction controller
+    app.post("/transactions", postTransaction);
+    app.get("/transactions", getTransactions);
+
+    const PORT = 3000;
     app.listen(PORT, () => {
       console.log(`Server running on http://localhost:${PORT}`);
     });
