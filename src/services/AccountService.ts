@@ -1,6 +1,6 @@
 // // src/services/AccountService.ts
 // import { getRepository } from 'typeorm';
-// import { Account } from '../entities/Account';
+// import { Account } from '../models/Account';
 
 // export class AccountService {
 //   private accountRepository = getRepository(Account);

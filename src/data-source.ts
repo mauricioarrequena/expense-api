@@ -8,11 +8,11 @@ export const AppDataSource = new DataSource({
   type: 'postgres',
   host: 'localhost',
   port: 5432,
-  username: 'postgres', // your username
-  password: 'postgres', // your password
-  database: 'expensedb',  // create it in pgAdmin or CLI
+  username: 'postgres', 
+  password: 'postgres', 
+  database: 'expensedb',  
   entities: [Account, TransactionTag, Transaction],  
-  migrations: ['src/migrations/**/*.ts'], // <- this is key
-  synchronize: false, // disable auto-sync when using migrations
+  migrations: ['src/migrations/**/*.ts'], 
+  synchronize: true, 
   logging: false,
 });

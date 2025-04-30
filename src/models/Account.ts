@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { AccountGroup } from '../enums/AccountGroup.enum';
 
 @Entity()
 export class Account {
@@ -6,12 +7,18 @@ export class Account {
   id!: number;
 
   @Column()
-  accountName!: string;
+  name!: string;
+
+  @Column() 
+  group!: AccountGroup;
 
   @Column()
+  dollar!: boolean;
+
+  @Column({ type: 'decimal' })
   balance!: number;
 
   @Column()
-  accountType!: string; // You can change this to match your schema
+  showOnDashboard!: boolean;
 }
 

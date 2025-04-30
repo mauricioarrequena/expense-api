@@ -1,7 +1,7 @@
 import express from "express";
 import { AppDataSource } from "./data-source";
 import cors from "cors";
-import { getAccounts } from "./controllers/AccountController";
+import { getAccounts, postAccount } from "./controllers/AccountController";
 import { getTransactionTags } from "./controllers/TransactionTagController";
 import {
   getTransactions,
@@ -13,11 +13,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-AppDataSource.initialize()
+AppDataSource.initialize()  
   .then(() => {
     console.log("Database connection established successfully!");
 
     //acccount controller
+    app.post("/accounts", postAccount)
     app.get("/accounts", getAccounts);
 
     //transactiontag controller
